@@ -122,4 +122,27 @@ class Person:
 - [Pydantic](https://docs.pydantic.dev/) is a library that provides data validation and settings management using type annotations.
 - Install :
   `pip install pydantic`
--
+- It’s worth mentioning that Pydantic always tries to coerce the type you annotated. For example, if you try to pass “30” to the agefield, this would still work even though this field expects an integer value. Pydantic handles this situation off the shelf.
+- Pydantic takes type hints seriously throws Validationg errors when type hints are not followed while assignin values
+- Pydatnic provides a list of built-in types for many use cases like that need specific validations such as paths, email addresses, IP addresses, to name a few.
+- Pydantic allows you to natively add some validation on each field by wrapping it inside the Field class.
+  For example:
+  - you can add constraints on the length of the string fields by using the Field’s max_lengthand min_length arguments
+  - you can set boundaries on the numerical fields by using the Field’s ge and le arguments. (ge: greater or equal, le: lower or equal).
+
+```
+from pydantic import BaseModel
+from typing import Optional, List
+
+class Person(BaseModel):
+first_name: str
+last_name: str
+interest: Optional[List[str]]
+
+data = {"first_name": "Ahmed", "last_name": "Besbes"}
+person = Person(**data)
+print(person)
+
+# first_name='Ahmed' last_name='Besbes' address=None interests=None
+
+```
