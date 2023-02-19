@@ -25,7 +25,7 @@ uvicorn main:app --reload
 - type annotations are used for documentation purposes
 - Unlike python, statically typed languages like C++ AND Java, its compulsory to declare a type to the variable before assigning a value
 - Python is dymanically typed so we dont have to specify the type
-- However, we can add type hints to variables in python
+- However, we can add [type hints](https://fastapi.tiangolo.com/python-types/) to variables in python
 
 ```
 x:str = 1
@@ -146,3 +146,7 @@ print(person)
 # first_name='Ahmed' last_name='Besbes' address=None interests=None
 
 ```
+
+### [Understanding async & await](https://youtu.be/t5Bo1Je9EmE)
+
+- code rounties and futures (futures are similar to promises in wbekfjbejgbwekgbwegj)
