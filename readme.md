@@ -149,4 +149,53 @@ print(person)
 
 ### [Understanding async & await](https://youtu.be/t5Bo1Je9EmE)
 
-- code rounties and futures (futures are similar to promises in wbekfjbejgbwekgbwegj)
+- code rounties and futures (futures are similar to promises in javascripts)
+
+### [Operations / HTTP methods](https://testfully.io/blog/http-methods/)
+
+Normally we use:
+(post and patch are not idempotent)
+
+- `POST` : to create data.
+- `GET` : to read data.
+- `PUT` : to update data.
+- `DELETE` : to delete data.
+- `PATCH` : to update data partially (only provided fields)
+- `HEAD` : to read data without response body (usually used before get to determine the Content-length i.e size of data)
+- `OPTIONS` : to get information about the possible communication options for a given URL (Permitted HTTP methods)
+- `TRACE` : for diagnosis purposes
+
+### Path and query parameters
+
+```
+@app.get("/items/{item_id}")
+async def read_item(item_id):
+    return {"item_id": item_id}
+```
+
+here `item_id` is a path parameter
+
+- You can declare the type of a path parameter in the function, using standard Python type annotations:
+
+```
+@app.get("/items/{item_id}")
+async def read_item(item_id : int):
+    return {"item_id": item_id}
+```
+
+### [Understanding Enums](https://youtu.be/MO-I8Sun_jw)
+
+```
+from enum import Enum
+
+# values should be unique
+class State(Enum):
+  PLAYING = 0
+  PAUSED = 1
+  GAME_OVER = 2
+
+  print(state.PLAYING)
+
+```
+
+### [Understanding RESTful web API design](https://learn.microsoft.com/en-us/azure/architecture/best-practices/api-design)
