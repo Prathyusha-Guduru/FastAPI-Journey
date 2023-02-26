@@ -1,9 +1,17 @@
 from typing import Union
-from fastapi import FastAPI
 from pydantic import BaseModel
 import uvicorn
 
+
+# Templating
+from fastapi import FastAPI, Request
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
+
 app = FastAPI()
+
+templates = Jinja2Templates(directory="templates")
 
 class Item(BaseModel):
     name: str
@@ -13,11 +21,13 @@ class Item(BaseModel):
 
 
 
-@app.get("/")
-def read_root():
+@app.get("/index/",response_class=HTMLResponse)
+def index(request:Request):
     print("hello worlds")
     print("reload check")
-    return {"Hello": "World"}
+    random  = "Hi"
+    context ={"request" : request}
+    return templates.TemplateResponse("index.html",context)
 
 
 # @app.get("/items/{item_id}")
