@@ -1,4 +1,4 @@
-from typing import Union
+from typing import Union, List
 from pydantic import BaseModel
 import uvicorn
 
@@ -40,8 +40,8 @@ def index(request:Request):
 #     return {"item_name": item.name, "item_id": item_id}
 
 @app.get("/items/{item_id}")
-def get_needy(item_id:int, needy:bool):
-    return {"item_id":item_id, "needy":needy}
+def get_needy(item_id:int, needy_thing: Union[List[str],None] = Query(default=None,alias="needy-thing",deprecated=True)):
+    return {"item_id":item_id, "needy":needy_thing}
 
 @app.put("/items/{item_id}")
 def create_new_item(item_id:int, item:Item):

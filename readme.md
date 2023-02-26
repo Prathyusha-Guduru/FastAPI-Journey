@@ -186,7 +186,7 @@ async def read_item(item_id : int):
 
 #### **Query parameters and string validations**
 
-To show that a query parameters is not-required :
+**To show that a query parameters is not-required :**
 
 ```
 @app.get("/items/")
@@ -216,6 +216,27 @@ async def read_items(q: Union[str, None] = Query(default=None, max_length=50)):
     return results
 
 ```
+
+**NOTE**</br>
+You can add regular expressions for validating as well, Eg : </br>
+`Query(default=None, min_length=3, max_length=50, regex="^fixedquery$")`
+
+<br></br>
+
+**To show that a parameter is optional**
+
+- Do not set default value to None
+  Eg </br>
+  `q: str`
+- Set default value to ellipses </br>
+  `(q: str = Query(default=..., min_length=3)`
+- Use pydantic's Required </br>
+  `q: str = Query(default=Required, min_length=3)`
+
+**Multiple query parameters**
+
+- with using Query(), you can declare it to recieve a list of query parameters, Eg : </br>
+  `(q: Union[List[str], None] = Query(default=None)`
 
 ### [Understanding Enums](https://youtu.be/MO-I8Sun_jw)
 
