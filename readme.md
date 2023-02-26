@@ -184,6 +184,39 @@ async def read_item(item_id : int):
     return {"item_id": item_id}
 ```
 
+#### **Query parameters and string validations**
+
+To show that a query parameters is not-required :
+
+```
+@app.get("/items/")
+async def read_items(q: Union[str, None] = None):
+    results = {"items": [{"item_id": "Foo"}, {"item_id": "Bar"}]}
+    if q:
+        results.update({"q": q})
+    return results
+
+```
+
+To add some more valdations, we can use `Query()`, it should be imported from fastapi
+
+```
+from typing import Union
+
+from fastapi import FastAPI, Query
+
+app = FastAPI()
+
+
+@app.get("/items/")
+async def read_items(q: Union[str, None] = Query(default=None, max_length=50)):
+    results = {"items": [{"item_id": "Foo"}, {"item_id": "Bar"}]}
+    if q:
+        results.update({"q": q})
+    return results
+
+```
+
 ### [Understanding Enums](https://youtu.be/MO-I8Sun_jw)
 
 ```
@@ -206,3 +239,7 @@ class State(Enum):
 - To declare a request body, you use Pydantic models with all their power and benefits.
 
 ### [Understanding RESTful web API design](https://learn.microsoft.com/en-us/azure/architecture/best-practices/api-design)
+
+### Understanding templating
+
+- https://youtu.be/yu0TbJ2BQso
