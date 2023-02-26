@@ -124,7 +124,8 @@ class Person:
   `pip install pydantic`
 - It’s worth mentioning that Pydantic always tries to coerce the type you annotated. For example, if you try to pass “30” to the agefield, this would still work even though this field expects an integer value. Pydantic handles this situation off the shelf.
 - Pydantic takes type hints seriously throws Validationg errors when type hints are not followed while assignin values
-- Pydatnic provides a list of built-in types for many use cases like that need specific validations such as paths, email addresses, IP addresses, to name a few.
+- Pydatnic provides a list of built-in types for many use cases like that need specific validations such as paths, e
+  mail addresses, IP addresses, to name a few.
 - Pydantic allows you to natively add some validation on each field by wrapping it inside the Field class.
   For example:
   - you can add constraints on the length of the string fields by using the Field’s max_lengthand min_length arguments
@@ -197,5 +198,11 @@ class State(Enum):
   print(state.PLAYING)
 
 ```
+
+### Request body
+
+- Your API almost always has to send a response body. But clients don't necessarily need to send request bodies all the time.
+
+- To declare a request body, you use Pydantic models with all their power and benefits.
 
 ### [Understanding RESTful web API design](https://learn.microsoft.com/en-us/azure/architecture/best-practices/api-design)
