@@ -238,6 +238,14 @@ You can add regular expressions for validating as well, Eg : </br>
 - with using Query(), you can declare it to recieve a list of query parameters, Eg : </br>
   `(q: Union[List[str], None] = Query(default=None)`
 
+#### **Path parameters and numeric validations**
+
+- Number validations
+  Eg : </br>
+  `item_id: int = Path(title="The ID of the item to get", ge=1,le=100)`
+- gt: greater than
+- le: less than or equal
+
 ### [Understanding Enums](https://youtu.be/MO-I8Sun_jw)
 
 ```

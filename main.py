@@ -4,7 +4,7 @@ import uvicorn
 
 
 # Templating
-from fastapi import FastAPI, Request, Query
+from fastapi import FastAPI, Request, Query, Path
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -40,7 +40,7 @@ def index(request:Request):
 #     return {"item_name": item.name, "item_id": item_id}
 
 @app.get("/items/{item_id}")
-def get_needy(item_id:int, needy_thing: Union[List[str],None] = Query(default=None,alias="needy-thing",deprecated=True)):
+def get_needy(item_id:int = Path(title="The ID of the item you wanna get"), needy_thing: Union[List[str],None] = Query(default=None,alias="needy-thing",deprecated=True)):
     return {"item_id":item_id, "needy":needy_thing}
 
 @app.put("/items/{item_id}")
